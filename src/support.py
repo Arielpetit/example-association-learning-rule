@@ -1,9 +1,15 @@
-itemset_type = list[object]
-dataset_type = list[list[object]]
+from typing import List, Dict
+
+dataset_type = List[List[object]]
+itemset_type = List[object]
 
 
 def support(itemsets: dataset_type, data_set: itemset_type) -> float:
     """
-    To find the frequency of itemsets in the dataset.
+    Calculate the support of itemsets in a dataset.
     """
-    pass
+    support_count = 0
+    for transaction in itemsets:
+        if set(data_set).issubset(set(transaction)):
+            support_count += 1
+    return support_count / len(itemsets)
